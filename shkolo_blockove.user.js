@@ -9,6 +9,7 @@
 //
 // @match        https://app.shkolo.bg/diary*
 // @match        https://app.shkolo.bg/user*
+// @grant        GM_addStyle
 // ==/UserScript==
 
 function log(...args){
