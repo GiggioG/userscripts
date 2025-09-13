@@ -18,13 +18,14 @@ function log(...args){
 function main(){
     let video = null;
 
-    function attackUnpauseListener(){
-        video.addEventListener("pause", ()=>{
-            if(video.paused && video.readyState == HTMLMediaElement.HAVE_ENOUGH_DATA){
+    let unpauseInterval;
+    function startUnpauseInterval(){
+        unpauseInterval = setInterval(()=>{
+            if(video.paused){
                 video.play();
-                log("Video paused, playing.");
+                log("Video paused, playing.")
             }
-        });
+        }, 20);
     }
 
     let waitingInterval = setInterval(()=>{
@@ -32,7 +33,7 @@ function main(){
         if(video != null){
             log("Found video element, beginning to keep it playing...")
             clearInterval(waitingInterval);
-            attackUnpauseListener();
+            startUnpauseInterval();
         }
 
     }, 50);
